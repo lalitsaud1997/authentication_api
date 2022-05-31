@@ -3,6 +3,9 @@
 import os
 import sys
 
+#for email info... custom .env file 
+import dotenv
+
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'authentication_api.settings')
@@ -17,4 +20,5 @@ def main():
     execute_from_command_line(sys.argv)
 
 if __name__ == '__main__':
+    dotenv.read_dotenv()
     main()
