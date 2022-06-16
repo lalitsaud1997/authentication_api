@@ -4,7 +4,6 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 from account import serializers
-
 from account.serializers import SendPasswordResetEmailSerializer, UserChangePasswordSerializer, UserLoginSerializer, UserPasswordResetSerializer, UserProfileSerializer, UserRegistrationSerializer
 from django.contrib.auth import authenticate
 from account.renderers import UserRenderer
@@ -20,8 +19,6 @@ def get_tokens_for_user(user):
         'refresh': str(refresh),
         'access': str(refresh.access_token),
     }
-
-
 
 # Create user register views.
 class UserRegistrationView(APIView):
@@ -73,8 +70,6 @@ class UserChangePasswordView(APIView):
         serializer = UserChangePasswordSerializer(data=request.data, context = {'user':request.user})
         serializer.is_valid(raise_exception=True)
         return Response({'msg':'Password Changed Successfully'}, status=status.HTTP_200_OK)
-        
-
 
 # user password reset email send ...  views
 class SendPasswordResetEmailView(APIView):
@@ -83,7 +78,6 @@ class SendPasswordResetEmailView(APIView):
         serializer = SendPasswordResetEmailSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         return Response({'msg':'Password reset link send. Please check your Email'}, status=status.HTTP_200_OK)
-
 
 #user new reset password save.. views
 class UserPasswordResetView(APIView):
